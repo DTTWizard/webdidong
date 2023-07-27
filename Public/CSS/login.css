@@ -1,0 +1,49 @@
+body{
+    background: white;
+}
+.a{
+    width: 400px;
+    height: 500px;
+    border: 1px solid slategrey;
+    border-radius: 12px;
+    background: ghostwhite;
+    margin-top: 34px;
+    margin-bottom: 21px;
+}
+.a .b{
+    width: 132px;
+    height: 124px;
+    border-radius: 50%;
+    border: 1px solid;
+    margin: 0 auto;
+    background: antiquewhite;
+    margin-top: 16px;
+}
+.b img{
+    margin-left: 15px;
+    margin-top: 10px;
+    width: 100px;
+    height: 100px
+}
+.a form{
+    margin-top: 15px;
+}
+.a form .form-group label{
+    font-family: 'Lobster';
+    letter-spacing: 3px;
+    font-size: 21px;
+    color: darkviolet;
+}
+.c button{
+    width: 300px;
+    background: linear-gradient(to right, #fc00ff, #00dbde);
+    /*color: rgb(219, 0, 255);*/
+    font-size: 24px;
+    font-weight: bolder;
+    border-radius: 19px;
+    margin-left: 34px;
+}
+.c button:hover, .c button:active{
+    border-radius: 19px;
+    background: linear-gradient(to right, #fc00ff, #00dbde);
+}
