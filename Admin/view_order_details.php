@@ -25,6 +25,25 @@ if (isset($_SESSION['account']))
 </head>
 
 <body class="body-all-ad">
+<?php
+
+if (isset($_POST['update_order'])){
+    $id_ddh = $_POST["id"];
+    $status = $_POST["status"];
+  
+    if (!empty($id_ddh) && !empty($status)){
+       $update_order = update_order($id_ddh, $status);
+        if ($update_order){
+            header('location: view_order.php');
+        }else{
+            echo "<script>alert('Cập nhật đơn hàng không thành công')</script>";
+        }
+        
+    }else{
+        echo "<script>alert('Vui lòng nhập đầy đủ thông tin')</script>";
+    }
+}
+?>
 <!-- Header -->
 <!-- Header -->
 <div class="row header" style="margin: auto; width: 100%">
@@ -45,7 +64,7 @@ if (isset($_SESSION['account']))
         if (isset($_SESSION['account']))
         {
             echo "<a class='regis_log' href='../Customer/profile_user.php'>
-                  <img src='../Images/Tan%20Phat.jpg' alt='Bùi Trọng Đạt'>"."
+                  <img src='../Images/dat.jpg' alt='Bùi Trọng Đạt'>"."
                   <font style='color: bisque'>".$_SESSION['account']."</font></a>";
         }else
         {
@@ -119,7 +138,16 @@ if (isset($_SESSION['account']))
                 ?>
                         <table class="table" style="background: #fff">
                             <tr>
-                                <td colspan="4" class="text-right">ID ĐƠN HÀNG: <?php echo $num['id_ddh'];?></td>
+                                <td style="font-size: 16px;">
+                                    <?php 
+                                        if ($num['status'] == 1) {
+                                            echo "<b>Chờ xác nhận</b>";
+                                        }else {
+                                            echo "<b>Đã xác nhận</b>";
+                                        }
+                                    ?>
+                                </td>   
+                                <td colspan="3" class="text-right">ID ĐƠN HÀNG: <?php echo $num['id_ddh'];?></td>
                             </tr>
                             <?php
                                 $tongtientra = 0;
@@ -178,6 +206,23 @@ if (isset($_SESSION['account']))
                                     <font style="font-size: 20px;color: red;">
                                         <?php echo number_format($num['tong_tien'],0,',','.'); ?>
                                     </font>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="4" class="text-right">
+                                    <form method="post">
+                                        <?php 
+                                            if ($num['status'] == 1) {
+                                         ?>       
+                                            <input type="hidden" name="id" value="<?php echo $num['id_ddh']; ?>" >
+                                            <input type="hidden" name="status" value="2">
+                                            <button class="btn btn-success" name="update_order" type="submit">Xác nhận đơn hàng</button>
+                                        <?php
+                                            }
+                                        ?>
+                                        
+                                    </form>
                                 </td>
                             </tr>
                         </table>

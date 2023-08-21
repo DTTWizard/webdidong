@@ -44,7 +44,7 @@ if (isset($_SESSION['account']))
         if (isset($_SESSION['account']))
         {
             echo "<a class='regis_log' href='../Customer/profile_user.php'>
-                  <img src='../Images/Tan%20Phat.jpg' alt='Bùi Trọng Đạt'>"."
+                  <img src='../Images/dat.jpg' alt='Bùi Trọng Đạt'>"."
                   <font style='color: bisque'>".$_SESSION['account']."</font></a>";
         }else
         {

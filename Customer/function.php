@@ -56,7 +56,14 @@ function check_pwd($id,$pass){
 function search($ten){
     global $conn;
     connect();
-    $sql = "select * from sanpham WHERE ten_sp LIKE '%$ten%'";
+    $sql = "SELECT * 
+            FROM sanpham 
+            WHERE ten_sp LIKE '%$ten%' 
+            OR gia_sp LIKE '%$ten%' 
+            OR gia_km LIKE '%$ten%' 
+            OR ram LIKE '%$ten%' 
+            OR rom LIKE '%$ten%';
+    ";
     $query= mysqli_query($conn, $sql);
     return $query;
 }

@@ -40,7 +40,11 @@ if (isset($_SESSION['account']))
            style="font-size:19px;"
            class="icon" onclick="myFunction()">&#9776;</a>
 
-        <?php
+
+
+
+
+ <?php
         if (isset($_SESSION['account']))
         {
             echo "<a class='regis_log' href='../Customer/profile_user.php'>
@@ -51,8 +55,8 @@ if (isset($_SESSION['account']))
             ?>
             <a href="../Customer/register.php" class="regis_log"><span class="fa fa-user-plus"></span> Đăng Ký</a>
             <a class="regis_log" href="../Customer/login.php"><span class="glyphicon glyphicon-log-in"></span> Đăng Nhập</a>
-        <?php } ?>
-    </div>
+        <?php } ?> 
+    </div> 
 </div>
 
 <!--  Body  -->

@@ -44,7 +44,7 @@ if (isset($_SESSION['account']))
         if (isset($_SESSION['account']))
         {
             echo "<a class='regis_log' href='../Customer/profile_user.php'>
-                  <img src='../Images/Tan%20Phat.jpg' alt='Bùi Trọng Đạt'>"."
+                  <img src='../Images/dat.jpg' alt='Bùi Trọng Đạt'>"."
                   <font style='color: bisque'>".$_SESSION['account']."</font></a>";
         }else
         {
@@ -115,9 +115,10 @@ if (isset($_SESSION['account']))
                         <th>STT</th>
                         <th>ID Đơn hàng</th>
                         <th>Tên người đặt</th>
-                        <th>Ngày lập</th>
+                        <th>Ngày lập</th> 
                         <th>Tổng tiền</th>
                         <th>Địa chỉ nhận hàng</th>
+                        <th>Trạng thái3</th>
                         <th>Tác vụ</th>
                     </tr>
                     </thead>
@@ -139,6 +140,15 @@ if (isset($_SESSION['account']))
                                 Email: <b><?php echo $num["email_nn"]; ?></b> <br>
                                 Nơi nhận: <b><?php echo $num["noi_nhan"]; ?></b> <br>
                                 Ghi chú: <b><?php echo $num["ghi_chu"]; ?></b>
+                            </td>
+                            <td>
+                                <?php
+                                    if ($num['status'] == 1) {
+                                        echo "<b class='text-primary'>Chờ xác nhận</b>";
+                                    }else {
+                                        echo "<b style='color: darkgrey'>Đã xác nhận</b>";
+                                    }
+                                ?>
                             </td>
                             <td>
                                 <a href="view_order_details.php?idorder=<?php echo $num['id_ddh']; ?>">

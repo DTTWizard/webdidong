@@ -43,7 +43,7 @@ if (isset($_SESSION['account']))
             if (isset($_SESSION['account']))
             {
                 echo "<a class='regis_log' href='../Customer/profile_user.php'>
-                  <img src='../Images/Tan%20Phat.jpg' alt='Bùi Trọng Đạt'>"."
+                  <img src='../Images/dat.jpg' alt='Bùi Trọng Đạt'>"."
                   <font style='color: bisque'>".$_SESSION['account']."</font></a>";
             }else
             {
@@ -171,10 +171,131 @@ if (isset($_SESSION['account']))
                         </div>
                     </a>
                 </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-2">
+                        <select id="select-search" class="form-control">
+                            <option value="">Chọn kiểu thống kê</option>
+                            <option value="tk_week" <?php if (isset($_POST['week']) && !empty($_POST['week'])) { echo 'selected'; } ?>>Tuần</option>
+                            <option value="tk_month" <?php if (isset($_POST['month']) && !empty($_POST['month'])) { echo 'selected'; } ?>>Tháng</option>
+                            <option value="tk_year" <?php if (isset($_POST['year']) && !empty($_POST['year'])) { echo 'selected'; } ?>>Năm</option>
+                        </select>
+                    </div>
+                    <form method="post">
+                        <div class="col-md-2">
+                            <select name="week" id="s-week" class="form-control" style="display: none <?php if (isset($_POST['week']) && !empty($_POST['week'])) { echo 'display: inline-block';} ?>" 
+                    
+                            >
+                                <option value="">Chọn tuần</option>
+                                    <?php
+                                        for ($week = 1; $week <= 52; $week++)
+                                        {
+                                            ?>
+                                            <option value="<?php echo $week; ?>" <?php if (isset($_POST['week']) && !empty($_POST['week']) && $_POST['week'] == $week) { echo 'selected';} ?>>
+                                                <?php echo $week; ?>
+                                            </option>
+                                            <?php
+                                        }
+                                    ?>
+                            </select>
+
+                            <select name="month" id="s-month" class="form-control" style="display: none <?php if (isset($_POST['month']) && !empty($_POST['month'])) { echo 'display: inline-block';} ?>">
+                                <option value="">Chọn tháng</option>
+                                    <?php
+                                        for ($month = 1; $month <= 12; $month++)
+                                        {
+                                            ?>
+                                            <option value="<?php echo $month; ?>" <?php if (isset($_POST['month']) && !empty($_POST['month']) && $_POST['month'] == $month) { echo 'selected';} ?>>
+                                                <?php echo $month; ?>
+                                            </option>
+                                            <?php
+                                        }
+                                    ?>
+                            </select>
+
+                            <select name="year" id="s-year" class="form-control" style="display: none <?php if (isset($_POST['week']) && !empty($_POST['year'])) { echo 'display: inline-block';} ?>">
+                                <option value="">Chọn năm</option>
+                                    <?php
+                                        $currentYear = date('Y');
+                                        for ($year = 2020; $year <= $currentYear; $year++)
+                                        {
+                                            ?>
+                                            <option value="<?php echo $year; ?>" <?php if (isset($_POST['year']) && !empty($_POST['year']) && $_POST['year'] == $year) { echo 'selected';} ?>>
+                                                <?php echo $year; ?>
+                                            </option>
+                                            <?php
+                                        }
+                                    ?>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit"  style="display: none; <?php if (isset($_POST['week']) && !empty($_POST['week']) || 
+                            isset($_POST['month']) && !empty($_POST['month']) || 
+                            isset($_POST['year']) && !empty($_POST['year'])) { 
+                                echo 'display: inline-block';
+                                } ?>" 
+                                id="btn-search" class="btn btn-primary">Thống kê</button>
+                        </div>
+                    </form>
+                    
+                </div>
+                <div class="col-md-12 dash">
+                    <?php
+                    $doanhthu = tk_doanhthu($_POST['week'], $_POST['month'], $_POST['year']);
+                    $t6 = mysqli_fetch_array($doanhthu);
+                    ?>
+                    <a href="view_comment.php">
+                        <div class="dash-text">
+                            <b><?php if (!empty($t6)){
+                                echo number_format($t6['doanh_thu'],0,',','.') . ' VNĐ';
+                            } else {
+                                echo '0 VNĐ';
+                            }?></b> <br>
+                            <i>Doanh thu</i>
+                        </div>
+                        <div class="dash-icon bl">
+                            <i class="far fa-money-bill-alt"></i>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
     <!--  Footer  -->
     </body>
     </html>
+    <script>
+        $(document).ready(function() {
+            $('#select-search').on('change', function() {
+                if ($(this).val() === 'tk_week') {
+                    $('#s-week').css('display', 'inline-block');
+                    $('#s-month').val(null);
+                    $('#s-year').val(null);
+                    $('#s-month').css('display', 'none');
+                    $('#s-year').css('display', 'none');
+                }else if ($(this).val() === 'tk_month') {
+                    $('#s-month').css('display', 'inline-block');
+                    $('#s-week').val(null);
+                    $('#s-year').val(null);
+                    $('#s-week').css('display', 'none');
+                    $('#s-year').css('display', 'none');
+                }else if ($(this).val() === 'tk_year') {
+                    $('#s-year').css('display', 'inline-block');
+                    $('#s-week').val(null);
+                    $('#s-month').val(null);
+                    $('#s-week').css('display', 'none');
+                    $('#s-month').css('display', 'none');
+                }
+
+                if($(this).val() != '') {
+                    $('#btn-search').css('display', 'inline-block');
+                }else {
+                    $('#btn-search').css('display', 'none');
+                    $('#s-week').css('display', 'none');
+                    $('#s-month').css('display', 'none');
+                    $('#s-year').css('display', 'none');
+                }
+            })
+        });
+    </script>
 <?php }else{header('location: ../Customer/Trangchu.php');} ?>

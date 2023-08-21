@@ -147,6 +147,14 @@
         else return false;
     }
 
+    function check_sp($ten){
+        global $conn;
+        connect();
+        $sql = "select ten_sp from sanpham where ten_sp = '%$ten%'";
+        $query = mysqli_query($conn, $sql);
+        return $query;
+    }
+
 //      DS Đơn đặt hàng
 function ds_ddh(){
     global $conn;
@@ -172,6 +180,16 @@ function ds_ddh_id($id){
     $sql = "select * from don_dh WHERE id_ddh='$id'";
     $query = mysqli_query($conn, $sql);
     return $query;
+}
+
+// Update trạng thái đơn hàng
+function update_order($id, $status){
+    global $conn;
+    connect();
+    $sql = "Update don_dh set status='$status' WHERE id_ddh ='$id'";
+    $query = mysqli_query($conn, $sql);
+    if($query) return true;
+    else return false;
 }
 //      Xóa Đơn hàng
 function xoa_ddh($id){
@@ -309,6 +327,50 @@ function tk_bl(){
     $query = mysqli_query($conn, $sql);
     return $query;
 }
+
+function tk_doanhthu($week, $month, $year){
+    global $conn;
+    connect();
+    if (isset($week) && !empty($week)){
+        $sql = "SELECT 
+                WEEK(ngay_lap) as tuan, 
+                SUM(tong_tien) as doanh_thu 
+                from don_dh
+                where WEEK(ngay_lap) = $week
+                group by tuan
+                order by tuan
+            ";      
+    }
+
+    if (isset($month) && !empty($month)){
+        $sql = "SELECT 
+                MONTH(ngay_lap) as thang, 
+                SUM(tong_tien) as doanh_thu 
+                from don_dh
+                where MONTH(ngay_lap) = $month
+                group by thang
+                order by thang
+            ";      
+    }
+
+    if (isset($year) && !empty($year)){
+        $sql = "SELECT 
+                YEAR(ngay_lap) as nam, 
+                SUM(tong_tien) as doanh_thu 
+                from don_dh
+                where YEAR(ngay_lap) = $year
+                group by nam
+                order by nam
+            ";      
+    }
+
+    
+    
+     $query = mysqli_query($conn, $sql);
+
+     return $query;
+}
+
 //      Tìm kiếm theo tên tài khoản
 function search_tk($ten){
     global $conn;

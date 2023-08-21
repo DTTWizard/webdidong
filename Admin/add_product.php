@@ -24,7 +24,9 @@ if (isset($_SESSION['account']))
 </head>
 
 <body class="body-all-ad">
+    
 <?php
+
 if (isset($_POST['ok'])){
     $tensp = $_POST["tensp"];
     $img_name = $_FILES['anhsp']['name'];
@@ -52,17 +54,24 @@ if (isset($_POST['ok'])){
     $hangsx = $_POST["dmsp"];
     $baohanh = $_POST["baohanh"];
 
+  
     if (!empty($tensp) && !empty($giasp) && !empty($giakm) && !empty($hangsx) && !empty($soluong)
         && !empty($rom) && !empty($ram) && !empty($mausac) && !empty($img_name)){
         move_uploaded_file($img_tmpname,'../Images/'.$img_name);
-        $add_sp = them_sp($hangsx, $tensp, $img_name, $giasp, $giakm, $mausac, $trongluong, $kichthuoc, $soluong,
-            $chipset, $pin, $cameratruoc, $camerasau, $cambien, $hdh, $gps, $blutooth, $wlan,
-            $dpgmh, $ktmh, $loaisim, $rom, $ram, $baohanh);
-        if ($add_sp){
-            header('location: view_product.php');
-        }else{
-            echo "<script>alert('Thêm mới sản phẩm không thành công')</script>";
-        }
+        $checksp = check_sp('iPhone 11 Pro Max 256GB Chính hãng(VNA)');
+        if(mysqli_num_rows($checksp) > 0) {
+                $add_sp = them_sp($hangsx, $tensp, $img_name, $giasp, $giakm, $mausac, $trongluong, $kichthuoc, $soluong,
+                $chipset, $pin, $cameratruoc, $camerasau, $cambien, $hdh, $gps, $blutooth, $wlan,
+                $dpgmh, $ktmh, $loaisim, $rom, $ram, $baohanh);
+                if ($add_sp){
+                    header('location: view_product.php');
+                }else{
+                    echo "<script>alert('Thêm mới sản phẩm không thành công')</script>";
+                }
+          }else {
+            echo "<script>alert('Sản phẩm đã tồn tại')</script>";
+          }
+        
     }else{
         echo "<script>alert('Vui lòng nhập đầy đủ thông tin')</script>";
     }
@@ -88,7 +97,7 @@ if (isset($_POST['ok'])){
         if (isset($_SESSION['account']))
         {
             echo "<a class='regis_log' href='../Customer/profile_user.php'>
-                  <img src='../Images/Tan%20Phat.jpg' alt='Bùi Trọng Đạt'>"."
+                  <img src='../Images/dat.jpg' alt='Bùi Trọng Đạt'>"."
                   <font style='color: bisque'>".$_SESSION['account']."</font></a>";
         }else
         {
