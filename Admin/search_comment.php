@@ -1,5 +1,5 @@
 <?php
-require_once 'function.php';
+require_once 'functionn.php';
 session_start();
 if (isset($_SESSION['account']))
 {

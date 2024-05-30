@@ -195,7 +195,7 @@ session_start();
         <i class="fas fa-phone-volume"></i>
         <span>Hotline: 0967448690 <a href="tel: "></a></span> <br>
         <i class="fas fa-envelope-open-text"></i>
-        <span>Email: <a href="https://www.google.com/gmail">buitrongdat0904@gmail.com</a></span>
+        <span>Email: <a href="https://www.google.com/gmail">dinhhoanglong010@gmail.com</a></span>
     </div>
    
 </div>

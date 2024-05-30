@@ -42,7 +42,7 @@ require_once("function.php");
             <span class="logo2">ABCmobile</span></a>
         <a href="Trangchu.php">Trang Chủ</a>
         <a href="introduce.php">Giới Thiệu</a>
-        <a href="tel: 0967448690">Liên Hệ</a>
+        <a href="tel: 0963543864">Liên Hệ</a>
 
         <a href="javascript:void(0);"
            style="font-size:19px;"
@@ -164,11 +164,11 @@ if (isset($_POST['ok'])){
     <div class="fot col-md-3 col-sm-6 col-xs-6">
         <b>THÔNG TIN LIÊN HỆ</b> <br>  
         <i class="fas fa-mobile-alt"></i>
-        <span>Điện thoại: 0967448690 <a href="tel: "></a></span> <br>
+        <span>Điện thoại: 0963543864 <a href="tel: "></a></span> <br>
         <i class="fas fa-phone-volume"></i>
-        <span>Hotline: 0967448690 <a href="tel: "></a></span> <br>
+        <span>Hotline: 0963543864 <a href="tel: "></a></span> <br>
         <i class="fas fa-envelope-open-text"></i>
-        <span>Email: <a href="https://www.google.com/gmail">buitrongdat0904@gmail.com</a></span>
+        <span>Email: <a href="https://www.google.com/gmail">dinhhoanglong010@gmail.com</a></span>
     </div>
    
 </div>

@@ -118,7 +118,7 @@ if (isset($_SESSION['account']))
                         <th>Ngày lập</th> 
                         <th>Tổng tiền</th>
                         <th>Địa chỉ nhận hàng</th>
-                        <th>Trạng thái3</th>
+                        <th>Trạng thái</th>
                         <th>Tác vụ</th>
                     </tr>
                     </thead>
@@ -142,13 +142,7 @@ if (isset($_SESSION['account']))
                                 Ghi chú: <b><?php echo $num["ghi_chu"]; ?></b>
                             </td>
                             <td>
-                                <?php
-                                    if ($num['status'] == 1) {
-                                        echo "<b class='text-primary'>Chờ xác nhận</b>";
-                                    }else {
-                                        echo "<b style='color: darkgrey'>Đã xác nhận</b>";
-                                    }
-                                ?>
+                               
                             </td>
                             <td>
                                 <a href="view_order_details.php?idorder=<?php echo $num['id_ddh']; ?>">

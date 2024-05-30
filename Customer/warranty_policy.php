@@ -39,7 +39,7 @@ session_start();
             <span class="logo2">ABCmobile</span></a>
         <a href="Trangchu.php">Trang Chủ</a>
         <a href="introduce.php">Giới Thiệu</a>
-        <a href="tel: 0967448690">Liên Hệ</a>
+        <a href="tel: 0963543864">Liên Hệ</a>
 
         <a href="javascript:void(0);"
            style="font-size:19px;"
@@ -138,7 +138,7 @@ session_start();
             cố gắng hết sức để hỗ trợ - hướng dẫn khách hàng trong việc sao lưu dữ liệu. Tuy nhiên,
             cửa hàng không chịu trách nhiệm về việc mất bất cứ dữ liệu trong mọi trường hợp. </p>
         <p>Để được hỗ trợ trực tiếp với dịch vụ bảo hành, sửa chữa vui lòng liên hệ
-            tổng đài: <font><a href="tel: 0967448690">1800.9899</a> (miễn phí)</font></p>
+            tổng đài: <font><a href="tel: 0963543864">1800.9899</a> (miễn phí)</font></p>
         <h4><b>ABCmobile rất hân hạnh được phục vụ Quý khách!</b></h4>
     </div>
 </div>
@@ -151,7 +151,7 @@ session_start();
 </div>
 <!------------Call----------------->
 <a id="calltrap-btn" class="b-calltrap-btn calltrap_offline hidden-phone visible-tablet"
-   href="tel:0967448690" data-toggle="tooltip" title="Gọi ngay cho tôi" data-placement="right">
+   href="tel:0963543864" data-toggle="tooltip" title="Gọi ngay cho tôi" data-placement="right">
     <div id="calltrap-ico"></div>
 </a>
 <!-------------------Inbox------------------------->
@@ -208,11 +208,11 @@ session_start();
     <div class="fot col-md-3 col-sm-6 col-xs-6">
         <b>THÔNG TIN LIÊN HỆ</b> <br>  
         <i class="fas fa-mobile-alt"></i>
-        <span>Điện thoại: 0967448690 <a href="tel: "></a></span> <br>
+        <span>Điện thoại: 0963543864 <a href="tel: "></a></span> <br>
         <i class="fas fa-phone-volume"></i>
-        <span>Hotline: 0967448690 <a href="tel: "></a></span> <br>
+        <span>Hotline: 0963543864 <a href="tel: "></a></span> <br>
         <i class="fas fa-envelope-open-text"></i>
-        <span>Email: <a href="https://www.google.com/gmail">buitrongdat0904@gmail.com</a></span>
+        <span>Email: <a href="https://www.google.com/gmail">dinhhoanglong010@gmail.com</a></span>
     </div>
    
 </div>

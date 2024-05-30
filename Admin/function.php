@@ -328,48 +328,91 @@ function tk_bl(){
     return $query;
 }
 
-function tk_doanhthu($week, $month, $year){
+// function tk_doanhthu($week, $month, $year){
+//     global $conn;
+//     connect();
+//     if (isset($week) && !empty($week)){
+//         $sql = "SELECT 
+//                 WEEK(ngay_lap) as tuan, 
+//                 SUM(tong_tien) as doanh_thu 
+//                 from don_dh
+//                 where WEEK(ngay_lap) = $week
+//                 group by tuan
+//                 order by tuan
+//             ";      
+//     }
+
+//     if (isset($month) && !empty($month)){
+//         $sql = "SELECT 
+//                 MONTH(ngay_lap) as thang, 
+//                 SUM(tong_tien) as doanh_thu 
+//                 from don_dh
+//                 where MONTH(ngay_lap) = $month
+//                 group by thang
+//                 order by thang
+//             ";      
+//     }
+
+//     if (isset($year) && !empty($year)){
+//         $sql = "SELECT 
+//                 YEAR(ngay_lap) as nam, 
+//                 SUM(tong_tien) as doanh_thu 
+//                 from don_dh
+//                 where YEAR(ngay_lap) = $year
+//                 group by nam
+//                 order by nam
+//             ";      
+//     }
+    
+//      $query = mysqli_query($conn, $sql);
+
+//      return $query;
+// }
+function tk_doanhthu($week = null, $month = null, $year = null){
     global $conn;
     connect();
+    
+    // Khởi tạo câu lệnh SQL
+    $sql = "";
+
     if (isset($week) && !empty($week)){
-        $sql = "SELECT 
-                WEEK(ngay_lap) as tuan, 
-                SUM(tong_tien) as doanh_thu 
+        $sql .= "SELECT 
+                    WEEK(ngay_lap) as tuan, 
+                    SUM(tong_tien) as doanh_thu 
                 from don_dh
                 where WEEK(ngay_lap) = $week
                 group by tuan
-                order by tuan
-            ";      
+                order by tuan";
     }
 
     if (isset($month) && !empty($month)){
-        $sql = "SELECT 
-                MONTH(ngay_lap) as thang, 
-                SUM(tong_tien) as doanh_thu 
+        if (!empty($sql)) $sql .= " UNION ALL ";
+        $sql .= "SELECT 
+                    MONTH(ngay_lap) as thang, 
+                    SUM(tong_tien) as doanh_thu 
                 from don_dh
                 where MONTH(ngay_lap) = $month
                 group by thang
-                order by thang
-            ";      
+                order by thang";
     }
 
     if (isset($year) && !empty($year)){
-        $sql = "SELECT 
-                YEAR(ngay_lap) as nam, 
-                SUM(tong_tien) as doanh_thu 
+        if (!empty($sql)) $sql .= " UNION ALL ";
+        $sql .= "SELECT 
+                    YEAR(ngay_lap) as nam, 
+                    SUM(tong_tien) as doanh_thu 
                 from don_dh
                 where YEAR(ngay_lap) = $year
                 group by nam
-                order by nam
-            ";      
+                order by nam";
     }
-
     
-    
-     $query = mysqli_query($conn, $sql);
+    // Thực thi câu lệnh SQL
+    $query = mysqli_query($conn, $sql);
 
-     return $query;
+    return $query;
 }
+
 
 //      Tìm kiếm theo tên tài khoản
 function search_tk($ten){
