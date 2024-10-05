@@ -1,6 +1,42 @@
 <?php
 require_once ("connect.php");
+function generateVoucherCode($length = 8) {
+    return strtoupper(bin2hex(random_bytes($length / 2)));
+}
 
+// Hàm thêm voucher vào cơ sở dữ liệu
+function addVoucher($discount, $expiration_date) {
+    $code = generateVoucherCode();
+    $conn = getDBConnection();
+    $stmt = $conn->prepare("INSERT INTO vouchers (code, discount, expiration_date) VALUES (?, ?, ?)");
+    $stmt->bind_param("sds", $code, $discount, $expiration_date);
+    
+    if ($stmt->execute()) {
+        $stmt->close();
+        $conn->close();
+        return $code; // Trả về mã voucher
+    } else {
+        $stmt->close();
+        $conn->close();
+        return false; // Trả về false nếu có lỗi
+    }
+}
+
+// Hàm lấy tất cả các voucher
+function getAllVouchers() {
+    $conn = getDBConnection();
+    $sql = "SELECT * FROM vouchers";
+    $result = $conn->query($sql);
+    
+    $vouchers = [];
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $vouchers[] = $row;
+        }
+    }
+    $conn->close();
+    return $vouchers;
+}
 //      Hien tai khoan
 function account($user){
     global $conn;
@@ -395,4 +431,50 @@ function delete_like($id)
     if($query) return true;
     else return false;
 }
+function sendPasswordResetEmail($email, $matkhaumoi) {
+    require "../PHPMailer-master/src/PHPMailer.php";
+    require "../PHPMailer-master/src/SMTP.php";
+    require "../PHPMailer-master/src/Exception.php";
+
+    $mail = new PHPMailer\PHPMailer\PHPMailer(true); // true: enables exceptions
+    try {
+        $mail->SMTPDebug = 0; // 0,1,2: debug mode
+        $mail->isSMTP();
+        $mail->CharSet  = "utf-8";
+        $mail->Host = 'smtp.gmail.com';  // SMTP servers
+        $mail->SMTPAuth = true; // Enable authentication
+        $mail->Username = 'dttdtt957@gmail.com'; // SMTP username
+        $mail->Password = 'rreqmimkdzuukoaj'; // SMTP password
+        $mail->SMTPSecure = 'ssl';  // encryption TLS/SSL
+        $mail->Port = 465;  // port to connect to
+        $mail->setFrom('dttdtt957@gmail.com', 'Tiến');
+        $mail->addAddress($email); // Set the recipient's email
+        $mail->isHTML(true);  // Set email format to HTML
+        $mail->Subject = 'Thư gửi lại mật khẩu mới';
+
+        // Login page URL
+        $loginUrl = "http://yourwebsite.com/login"; // Replace this with your actual login page URL
+
+        // Customize the email body with the new password and login link
+        $noidungthu = "<p>Mật khẩu mới của bạn là: <strong>" . $matkhaumoi . "</strong></p>";
+        $noidungthu .= "<p>Bạn có thể đăng nhập bằng mật khẩu mới tại liên kết này: <a href='http://localhost/webdidong/Customer/login.php". "'>Đăng nhập</a></p>";
+
+        $mail->Body = $noidungthu;
+
+        $mail->smtpConnect(array(
+            "ssl" => array(
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+                "allow_self_signed" => true
+            )
+        ));
+        $mail->send();
+        echo "<script>alert('Gửi yêu cầu thành công!.Bạn check mật khẩu mới ở email của bạn.');</script>";
+    } catch (Exception $e) {
+        echo 'Error: ', $mail->ErrorInfo;
+    }
+}
+
+
+
 ?>

@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9546ea10-fdf0-46c4-b6a9-2f3034fdc009" name="Default" comment="" />
+    <list default="true" id="9546ea10-fdf0-46c4-b6a9-2f3034fdc009" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/Manager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/Manager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/account_management.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/account_management.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/add_account.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/add_account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/add_category.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/add_category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/add_product.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/add_product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/function.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/function.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/reply_comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/reply_comment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/statistical.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/statistical.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/view_order.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/view_order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/view_order_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/view_order_details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Customer/Trangchu.php" beforeDir="false" afterPath="$PROJECT_DIR$/Customer/Trangchu.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Customer/function.php" beforeDir="false" afterPath="$PROJECT_DIR$/Customer/function.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Customer/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/Customer/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Customer/pay.php" beforeDir="false" afterPath="$PROJECT_DIR$/Customer/pay.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Customer/product_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/Customer/product_details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Customer/view_product_category.php" beforeDir="false" afterPath="$PROJECT_DIR$/Customer/view_product_category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Customer/warranty_policy.php" beforeDir="false" afterPath="$PROJECT_DIR$/Customer/warranty_policy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Public/JS/carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/Public/JS/carousel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Public/fontawesome-free-5.12.1-web/svgs/solid/wallet.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Public/fontawesome-free-5.12.1-web/svgs/solid/wallet.svg" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,6 +105,9 @@
       <find>ds_sp</find>
     </findStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -142,6 +171,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="14" />
     <option name="width" value="1356" />
@@ -183,9 +217,22 @@
       </pane>
     </panes>
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.view_voucher.php.executor&quot;: &quot;Debug&quot;,
+    &quot;PHP Script.view_voucher.php.executor&quot;: &quot;Debug&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Xampp/htdocs/webdidong&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -200,6 +247,14 @@
       <recent name="E:\Install App\Xampp\htdocs\Web_dien_thoai\Public\CSS" />
       <recent name="E:\Install App\Xampp\htdocs\Web_dien_thoai\Public" />
     </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-PS-242.21829.154" />
+        <option value="bundled-php-predefined-a98d8de5180a-4d9f4c849d09-com.jetbrains.php.sharedIndexes-PS-242.21829.154" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -263,6 +318,8 @@
       <workItem from="1655797664829" duration="1000" />
       <workItem from="1655797696656" duration="2000" />
       <workItem from="1655797713904" duration="12000" />
+      <workItem from="1727618360025" duration="2948000" />
+      <workItem from="1727621345053" duration="336000" />
     </task>
     <servers />
   </component>
@@ -312,8 +369,22 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Admin/view_voucher.php</url>
+          <line>1</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Admin/reply_comment.php">

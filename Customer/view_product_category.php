@@ -385,10 +385,10 @@ if (isset($_GET['idxem'])){
 <div class="row follow">
     <div class="fot col-md-12 col-sm-12 col-xs-12 text-center">
         <h4><b>Theo dõi chúng tôi</b></h4>
-        <a href=""><div class="fab fa-facebook"></div> <span>Facebook</span></a>
-        <a href=""><div class="fab fa-instagram"></div> <span>Instagram</span></a>
-        <a href=""><div class="fab fa-twitter"></div> <span>Twitter</span></a>
-        <a href=""><div class="fab fa-youtube"></div> <span>Youtube</span></a>
+        <a href=""><div class="fab fa-facebook"></div> <span></span></a>
+        <a href=""><div class="fab fa-instagram"></div> <span></span></a>
+        <a href=""><div class="fab fa-twitter"></div> <span></span></a>
+        <a href=""><div class="fab fa-youtube"></div> <span></span></a>
     </div>
 </div>
 </body>

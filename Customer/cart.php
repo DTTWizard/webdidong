@@ -156,6 +156,8 @@ if (!isset($_SESSION['id_kh'])){
                             <input type="email" name="email_nn" id="email" class="form-control" placeholder="Email (*)">
                         </div>
                         <div class="col-md-12">
+                        <label for="new_input">Nhập mã giảm giá</label>
+                        <input type="text" name="discount_code" id="new_input" class="form-control" placeholder="Nhập mã giảm giá (nếu có)">
                             <label for="diachi">Địa chỉ giao hàng</label>
                             <input type="text" name="diachi_nn" id="diachi" class="form-control" placeholder="Địa chỉ giao hàng (*)">
                         </div>
@@ -186,7 +188,27 @@ global $conn;
         $diachinn = $_POST['diachi_nn'];
         $ghichunn = $_POST['ghichu_nn'];
         if (!empty($arr)){
+            // Ensure customer delivery details are filled
             if (!empty($tennn) && !empty($sdtnn) && !empty($emailnn) && !empty($diachinn)){
+                
+                // Initialize total amount
+                $tongtien = 0;
+        
+                // Loop through the cart to calculate total based on discounted price
+                foreach ($arr as $key => $value) {
+                    // Assuming you want to apply a discount to the original price
+                    $original_price = $value[2];
+                    $quantity = $value[1];
+                    
+                    // Calculate the discounted price
+                    $discount_percentage = 0.10; // Example: 10% discount (adjust as necessary)
+                    $discounted_price = $original_price * (1 - $discount_percentage);
+                    
+                    // Multiply by the quantity
+                    $tongtien += $discounted_price * $quantity;
+                }
+        
+                // Proceed with placing the order if total is calculated
                 $dathang = buy_cart($_SESSION['id_kh'], $tongtien, $tennn, $sdtnn, $emailnn, $diachinn, $ghichunn);
                 if ($dathang){
                     $insert_idctddh = mysqli_insert_id($conn);
@@ -195,18 +217,12 @@ global $conn;
                     }
                     if ($ctddh){
                         foreach ($arr as $key => $value){
-                            $giamsl = giam_sl($value[0], $value[0]);
+                            $giamsl = giam_sl($value[0], $value[1]); // Deduct the quantity sold
                         }
                         if ($giamsl){
-                            $del_gh_idkh = delete_gh_idkh($_SESSION['id_kh']);
+                            $del_gh_idkh = delete_gh_idkh($_SESSION['id_kh']); // Clear the cart after successful order
                             if ($del_gh_idkh){
-//                                echo "<div class='popupunder alert alert-success fade in'>
-//                                    <button type='button' class='close close-sm' data-dismiss='alert'>
-//                                    <i class='glyphicon glyphicon-remove'></i>
-//                                    </button> <strong>Thông báo : </strong> Đặt hàng thành công !
-//                                    <a href='order.php' title='s2'>Xem đơn hàng của tôi</a>
-//                                  </div>";
-                            header("location: success.php");
+                                header("location: success.php"); // Redirect to success page
                             }else{
                                 echo "<script>alert('Đặt hàng không thành công')</script>";
                             }
@@ -225,7 +241,7 @@ global $conn;
         }else{
             echo "<script>alert('Giỏ hàng trống')</script>";
         }
-    }
+    }        
 ?>
 
 <!----------------Back To Top------------------->

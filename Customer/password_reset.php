@@ -1,8 +1,44 @@
 <?php
-require_once ('function.php');
+ require_once('function.php');
 session_start();
 ob_start();
+$loi = "";
+
+//if ($_SERVER["REQUEST_METHOD"] == "GET") {
+if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER["REQUEST_METHOD"] == 'POST' ) {
+    $email = $_POST['email']; // Nhận email từ form
+
+    // Kiểm tra định dạng email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $loi = "Email không hợp lệ. Vui lòng nhập đúng định dạng email.";
+    }
+    else {
+        // Kết nối cơ sở dữ liệu và kiểm tra email
+        $conn = new PDO("mysql:host=localhost;dbname=webdidong;charset=utf8", "root", "");
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "SELECT * FROM khachhang WHERE email=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$email]);
+        $count = $stmt->rowCount();
+        if ($count == 0) {
+            $loi = "Email bạn nhập chưa đăng kí thành viên của chúng tôi.";
+        } else {
+             $matkhaumoi = substr(md5( rand(0,999999)),0,8);
+
+            $sql = "UPDATE  khachhang SET mat_khau =? WHERE email=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([ $matkhaumoi,$email]);
+            $kq = sendPasswordResetEmail($email, $matkhaumoi);
+
+
+        }
+    }
+
+
+}
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -12,17 +48,21 @@ ob_start();
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../Public/bootstrap-3.3.7-dist/css/bootstrap.css">
-    <script src="../Public/bootstrap-3.3.7-dist/js/jquery-3.2.1.js"></script>
+    <!-- <script src="../Public/bootstrap-3.3.7-dist/js/jquery-3.2.1.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
     <script src="../Public/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-    <script src="../Public/bootstrap-3.3.7-dist/js/jquery-3.2.0.min.js"></script>
+    <!-- <script src="../Public/bootstrap-3.3.7-dist/js/jquery-3.2.0.min.js"></script> -->
     <script src="../Public/JS/navbar.js"></script>
     <link rel="stylesheet" href="../Public/fontawesome-free-5.12.1-web/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Notable&family=Racing+Sans+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <link rel="stylesheet" href="../Public/CSS/call.css">
     <link rel="stylesheet" href="../Public/CSS/index3.css">
     <link rel="stylesheet" href="../Public/CSS/login.css">
-    <title>login</title>
+    <title>password reset </title>
 </head>
 
 <body>
@@ -51,21 +91,6 @@ ob_start();
 
             <a href="javascript:void(0);" style="font-size:19px;" class="icon" onclick="myFunction()">&#9776;</a>
 
-            <?php
-        if (isset($_SESSION['account']) or isset($_SESSION['avatar']))
-        {
-            $prfuser = prf_user($_SESSION['id_kh']);
-            $prf = mysqli_fetch_array($prfuser);
-            $anhdd = $prf['avatar'];
-            echo "<a class='regis_log' href='profile_user.php'>
-                  <img src='../Images/$anhdd' alt=''>"."
-                  <font style='color: bisque'>".$_SESSION['account']."</font></a>";
-        }else
-        {
-            ?>
-            <a href="register.php" class="regis_log"><span class="fa fa-user-plus"></span> Đăng Ký</a>
-            <a class="regis_log" href="login.php"><span class="glyphicon glyphicon-log-in"></span> Đăng Nhập</a>
-            <?php } ?>
             <a href="cart.php" class="regis_log">
                 <i class="fa fa-cart-plus"></i>
             </a>
@@ -91,55 +116,23 @@ ob_start();
         </div>
         <form method="post">
             <div class="form-group">
-                <label for="tk">Tài khoản</label>
-                <input type="text" class="form-control" id="tk" name="taikhoan" placeholder="Tên tài khoản">
-            </div>
-            <div class="form-group">
-                <label for="mk">Mật khẩu</label>
-                <input type="password" class="form-control" id="mk" name="matkhau" placeholder="Mật khẩu">
-            </div>
-            <div class="form-group" style="height: 17px;">
-                <a href="password_reset.php">Quên mật khẩu?</a>
+                <label for="tk">Nhập email của bạn</label>
+                <input type="text" class="form-control" id="tk" name="email" placeholder="Tên tài khoản" />
             </div>
             <div class="c">
-                <button type="submit" class="btn btn-warning" name="dangnhap">Đăng Nhập</button>
+                <button type="submit" class="btn btn-warning" name="send_mail">Gửi yêu cầu</button>
             </div>
+            <?php if ($loi != "") { ?>
+            <div style="color: red;"><?php echo $loi ?></div>
+            <?php } ?>
+
             <div class="text-center" style="margin-top: 10px">
                 <p>Hoặc</p>
                 <i>Bạn chưa có tài khoản? </i><span><a href="register.php">Tạo tài khoản</a></span>
             </div>
         </form>
     </div>
-    <?php
-if (isset($_POST['dangnhap'])){
-    $taikhoan = $_POST['taikhoan'];
-    $matkhau = $_POST['matkhau'];
-    $ktra = login($taikhoan, $matkhau);
-    if(mysqli_num_rows($ktra) != 0){
-        $qr = mysqli_fetch_array($ktra);
-        $ad = $qr['id_kh'];
-        $ava = $qr['avatar'];
-        if ($ad == 1){
-            $_SESSION['account']=$taikhoan;
-            $_SESSION['id_kh']=$ad;
-            $_SESSION['avatar'] = $ava;
-            $_SESSION['']= $taikhoan and $matkhau;
-            header('location: ../Admin/Manager.php');
-//            echo "<script>alert('Ok Admin')</script>";
-        }else{
-            $_SESSION['account']=$taikhoan;
-            $_SESSION['matkhau']=$matkhau;
-            $_SESSION['id_kh']=$ad;
-            $_SESSION['avatar'] = $ava;
-            $_SESSION['']= $taikhoan and $matkhau;
-            header('location: Trangchu.php');
-//            echo "<script>alert('OK KH')</script>";
-        }
-    }else{
-        echo "<script>alert('Bạn nhập sai tên Tài Khoản hoặc Mật Khẩu')</script>";
-    }
-}
-?>
+
     <div id="back-to-top" class="back-to-top" data-toggle="tooltip" data-placement="left" title="Trở lên đầu trang">
         <span class="fas fa-chevron-circle-up"></span>
     </div>

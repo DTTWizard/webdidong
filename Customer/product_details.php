@@ -296,7 +296,7 @@ if (isset($_GET['IDSP'])){
                 </div>
                 <p class="slsp">
                     <label for="slsp">Số lượng: </label>
-                    <input type="number" name="soluong" id="slsp" value="1">
+                    <input type="number" name="soluong" id="slsp" value="1" min="1">
                     <span>
                         <b>Tình trạng:</b>
                         <?php
@@ -309,12 +309,17 @@ if (isset($_GET['IDSP'])){
                     </span>
                 </p>
 
-                <div class="btn-add">
+                <div class="btn-add"> 
+                    <div class ="btn-add1"  style="display: flex; align-items: center; justify-content: flex-start; gap: 50px;><button type="submit" name="add-cart" class="btn btn-danger">
                     <button type="submit" name="add-cart" class="btn btn-danger">
-                        MUA NGAY
+                    <i class="fas fa-shopping-cart"></i>
+                    </button>
+                    <button type="submit" name="add-cart" class="btn btn-danger">
+                        <span>MUA NGAY</span>
                         <p>(Giao tận nơi hoặc lấy tại cửa hàng)</p>
                     </button>
-                    <button type="submit" name="like_heart" class="btn btn-warning"><i class="fa fa-heart"></i></button>
+                    <button type="submit" name="like_heart" class="btn btn-warning"><i class="fa fa-heart"></i></button></div>
+                
                     <p class="call-add">
                         <i class="fa fa-phone-alt"></i> Gọi đặt mua:
                         <a href="tel:0963543864">

@@ -183,13 +183,13 @@ function ds_ddh_id($id){
 }
 
 // Update trạng thái đơn hàng
-function update_order($id, $status){
+function update_order($id_ddh, $status) {
     global $conn;
-    connect();
-    $sql = "Update don_dh set status='$status' WHERE id_ddh ='$id'";
-    $query = mysqli_query($conn, $sql);
-    if($query) return true;
-    else return false;
+    $query = "UPDATE don_dh SET status = ? WHERE id_ddh = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('ii', $status, $id_ddh);
+
+    return $stmt->execute();
 }
 //      Xóa Đơn hàng
 function xoa_ddh($id){
@@ -446,4 +446,51 @@ function search_bl($ten){
     $query= mysqli_query($conn, $sql);
     return $query;
 }
+
+// Hàm kết nối đến cơ sở dữ liệu
+function connectDatabase() {
+    $conn = new mysqli('localhost', 'root', '', 'webdidong');
+    // Kiểm tra kết nối
+    if ($conn->connect_error) {
+        die("Kết nối database thất bại: " . $conn->connect_error);
+    }
+    return $conn;
+}
+
+// Hàm tạo mã voucher
+function generateVoucherCode($event_name) {
+    $code = strtoupper(implode('', array_map(function($word) {
+        return $word[0];
+    }, explode(' ', $event_name)))) . date('Y') . str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
+    return $code;
+}
+
+// Hàm thêm voucher vào cơ sở dữ liệu
+function addVoucher($event_name, $discount_percentage, $start_date, $end_date) {
+    $conn = connectDatabase();
+    $voucher_code = generateVoucherCode($event_name);
+
+    // Chuẩn bị câu lệnh SQL để thêm voucher
+    $stmt = $conn->prepare("INSERT INTO vouchers (event_name, discount_percentage, start_date, end_date, voucher_code, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
+    $stmt->bind_param("sisss", $event_name, $discount_percentage, $start_date, $end_date, $voucher_code);
+
+    // Thực thi câu lệnh SQL
+    if ($stmt->execute()) {
+        return $voucher_code; // Trả về mã voucher nếu thành công
+    } else {
+        return false; // Trả về false nếu có lỗi
+    }
+
+    // Đóng kết nối
+    $stmt->close();
+    $conn->close();
+}
+
+// Hàm kiểm tra ngày hợp lệ
+function isValidDateRange($start_date, $end_date) {
+    return strtotime($start_date) <= strtotime($end_date);
+}
+
+
+
 ?>

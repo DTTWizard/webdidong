@@ -6,26 +6,27 @@ if (isset($_SESSION['id_kh']) == 1)
 {
     $idbl = $_GET['idcmt'];
     ?>
-    <!doctype html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="../Public/bootstrap-3.3.7-dist/css/bootstrap.css">
-        <script src="../Public/bootstrap-3.3.7-dist/js/jquery-3.2.1.js"></script>
-        <script src="../Public/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-        <script src="../Public/bootstrap-3.3.7-dist/js/jquery-3.2.0.min.js"></script>
-        <script src="../Public/JS/navbar.js"></script>
-        <link rel="stylesheet" href="../Public/fontawesome-free-5.12.1-web/css/all.css">
-        <link href="https://fonts.googleapis.com/css2?family=Notable&family=Racing+Sans+One&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../Public/CSS/index3.css">
-        <link rel="stylesheet" href="../Public/CSS/admin.css">
-        <title>ABCmobile - Điện thoại chính hãng, giá tốt nhất</title>
-    </head>
+<!doctype html>
+<html lang="en">
 
-    <body class="body-all-ad">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../Public/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <script src="../Public/bootstrap-3.3.7-dist/js/jquery-3.2.1.js"></script>
+    <script src="../Public/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="../Public/bootstrap-3.3.7-dist/js/jquery-3.2.0.min.js"></script>
+    <script src="../Public/JS/navbar.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Notable&family=Racing+Sans+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../Public/CSS/index3.css">
+    <link rel="stylesheet" href="../Public/CSS/admin.css">
+    <title>ABCmobile - Điện thoại chính hãng, giá tốt nhất</title>
+</head>
+
+<body class="body-all-ad">
     <!-- Header -->
     <!-- Header -->
     <div class="row header" style="margin: auto; width: 100%">
@@ -38,9 +39,7 @@ if (isset($_SESSION['id_kh']) == 1)
             <a href="tel: 0967448690">Liên Hệ</a>
             <a href="statistical.php">Thống kê</a>
 
-            <a href="javascript:void(0);"
-               style="font-size:19px;"
-               class="icon" onclick="myFunction()">&#9776;</a>
+            <a href="javascript:void(0);" style="font-size:19px;" class="icon" onclick="myFunction()">&#9776;</a>
 
             <?php
             if (isset($_SESSION['account']))
@@ -51,8 +50,9 @@ if (isset($_SESSION['id_kh']) == 1)
             }else
             {
                 ?>
-                <a href="../Customer/register.php" class="regis_log"><span class="fa fa-user-plus"></span> Đăng Ký</a>
-                <a class="regis_log" href="../Customer/login.php"><span class="glyphicon glyphicon-log-in"></span> Đăng Nhập</a>
+            <a href="../Customer/register.php" class="regis_log"><span class="fa fa-user-plus"></span> Đăng Ký</a>
+            <a class="regis_log" href="../Customer/login.php"><span class="glyphicon glyphicon-log-in"></span> Đăng
+                Nhập</a>
             <?php } ?>
         </div>
     </div>
@@ -66,7 +66,7 @@ if (isset($_SESSION['id_kh']) == 1)
                 </a>
             </div>
             <div class="left-list">
-                <input class="qtad" id="qtht" type="checkbox" >
+                <input class="qtad" id="qtht" type="checkbox">
                 <label class="fa fa-user" for="qtht">Quản trị hệ thống</label>
 
                 <div>
@@ -74,7 +74,7 @@ if (isset($_SESSION['id_kh']) == 1)
                 </div>
             </div>
             <div class="left-list">
-                <input class="qtad" id="qtdm" type="checkbox" >
+                <input class="qtad" id="qtdm" type="checkbox">
                 <label class="fa fa-list" for="qtdm">Quản lý danh mục</label>
                 <div>
                     <a href="view_category.php">Danh mục sản phẩm</a> <br>
@@ -82,7 +82,7 @@ if (isset($_SESSION['id_kh']) == 1)
                 </div>
             </div>
             <div class="left-list">
-                <input class="qtad" id="qtnv" type="checkbox" >
+                <input class="qtad" id="qtnv" type="checkbox">
                 <label class="fa fa-coins" for="qtnv">Quản lý nghiệp vụ</label>
                 <div>
                     <a href="view_order.php">Quản lý đơn đặt hàng</a> <br>
@@ -119,26 +119,28 @@ if (isset($_SESSION['id_kh']) == 1)
                         <label class="control-label col-sm-2" for="nbl">Người bình luận:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="nbl" placeholder="Người bình luận"
-                                   value="<?php echo $num['ho_ten'];?>">
+                                value="<?php echo $num['ho_ten'];?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="sdt">Số điện thoại</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="sdt" placeholder="Số điện thoại" value="<?php echo $num['sdt'];?>">
+                            <input type="text" class="form-control" id="sdt" placeholder="Số điện thoại"
+                                value="<?php echo $num['sdt'];?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="bl">Bình luận:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="bl" placeholder="Bình luận" value="<?php echo $num['noi_dung'];?>">
+                            <input type="text" class="form-control" id="bl" placeholder="Bình luận"
+                                value="<?php echo $num['noi_dung'];?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="rep">Phản hồi khách hàng</label>
                         <div class="col-sm-10">
-                            <textarea name="repcmt" id="rep" placeholder="Nội dung phản hồi ....."
-                                      class="form-control" cols="30" rows="10"></textarea>
+                            <textarea name="repcmt" id="rep" placeholder="Nội dung phản hồi ....." class="form-control"
+                                cols="30" rows="10"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -167,6 +169,7 @@ if (isset($_SESSION['id_kh']) == 1)
         </div>
     </div>
     <!--  Footer  -->
-    </body>
-    </html>
+</body>
+
+</html>
 <?php }else{header('location: ../Customer/Trangchu.php');} ?>

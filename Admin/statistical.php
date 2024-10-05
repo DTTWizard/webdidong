@@ -241,7 +241,17 @@ if (isset($_SESSION['account']))
                 </div>
                 <div class="col-md-12 dash">
                     <?php
-                    $doanhthu = tk_doanhthu($_POST['week'], $_POST['month'], $_POST['year']);
+
+                    if(isset($_POST['week'])||isset($_POST['month'])||isset($_POST['year']))
+                    {
+                        $doanhthu = tk_doanhthu($_POST['week'], $_POST['month'], $_POST['year']);
+
+                    }else
+                    {
+                        $doanhthu = tk_doanhthu(2);
+
+                    }
+
                     $t6 = mysqli_fetch_array($doanhthu);
                     ?>
                     <a href="view_comment.php">

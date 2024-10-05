@@ -9,7 +9,7 @@ $("#back-to-top").click(function(){return $("body, html").animate({scrollTop:0},
 $(function(){$('[data-toggle="tooltip"]').tooltip()});
 
 function hide_float_right() {
-
+debugger
     var content = document.getElementById('float_content_right');
 
     var hide = document.getElementById('hide_float_right');
