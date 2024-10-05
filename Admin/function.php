@@ -490,7 +490,47 @@ function addVoucher($event_name, $discount_percentage, $start_date, $end_date) {
 function isValidDateRange($start_date, $end_date) {
     return strtotime($start_date) <= strtotime($end_date);
 }
+function fetchVouchers() {
+    global $conn; // Use the global $conn variable
+    $sql = "SELECT id, code, discount, expiry_date FROM vouchers";
+    $result = $conn->query($sql);
 
+    $vouchers = [];
+    if ($result->num_rows > 0) {
+        // Fetch all rows
+        while ($row = $result->fetch_assoc()) {
+            $vouchers[] = $row;
+        }
+    }
+    return $vouchers; // Return the vouchers
+}
+
+$servername = "localhost";
+$username = "root "; // Change this
+$password = "your_password"; // Change this
+$dbname = "webdidong"; // Change this to your database name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch a random voucher code from the database
+$sql = "SELECT voucher_code FROM vouchers ORDER BY RAND() LIMIT 1"; // Get one random voucher code
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // Fetch the voucher code
+    $row = $result->fetch_assoc();
+    echo json_encode($row); // Return as JSON
+} else {
+    echo json_encode(['code' => 'No vouchers available']); // No vouchers found
+}
+
+$conn->close();
 
 
 ?>

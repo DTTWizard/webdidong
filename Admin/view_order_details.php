@@ -30,7 +30,7 @@ if (isset($_SESSION['account']))
 
 if (isset($_POST['update_order'])) {
     $id_ddh = $_POST['id'];
-    $status = isset($_POST['status']) ? $_POST['status'] : null; // Thêm giá trị mặc định nếu không có status
+    $status = isset($_POST['status']) ? $_POST['status'] : null; 
 
     if (!empty($id_ddh) && !empty($status)) {
         $update_order = update_order($id_ddh, $status);
@@ -240,7 +240,7 @@ if (isset($_POST['update_order'])) {
             </div>
         </div>
     </div>
-    <!--  Footer  -->
+  
 </body>
 
 </html>

@@ -134,6 +134,7 @@ if (isset($_SESSION['account']))
                                 <td><?php echo $num["ten_kh"]; ?></td>
                                 <td><?php echo $num["ngay_lap"]; ?></td>
                                 <td><?php echo $num["tong_tien"]; ?></td>
+                            
                                 <td>
                                     Người nhận: <b><?php echo $num["hoten_nn"]; ?></b> <br>
                                     SĐT: <b><?php echo $num["sdt_nn"]; ?></b> <br>
@@ -141,6 +142,7 @@ if (isset($_SESSION['account']))
                                     Nơi nhận: <b><?php echo $num["noi_nhan"]; ?></b> <br>
                                     Ghi chú: <b><?php echo $num["ghi_chu"]; ?></b>
                                 </td>
+                                <td><?php echo $num["status"]; ?></td>
                                 <td>
 
                                 </td>
