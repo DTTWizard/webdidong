@@ -132,6 +132,7 @@
         ?>
             <a href="view_product_category.php?idxem=<?php echo $num['id_dmsp'];?>">
                 <img src="../Images/<?php echo $num['logo_dmsp'];?>" alt="s2">
+           
             </a>
             <?php    }
         ?>
@@ -150,7 +151,6 @@
             ?>
             </div>
         </div>
-
         <!---------------Điện thoại nổi bật------------------>
 
         <div class="row">
